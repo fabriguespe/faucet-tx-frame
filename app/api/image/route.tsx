@@ -119,6 +119,7 @@ export async function GET(req: NextRequest) {
             <img
               src={network.networkLogo!}
               style={{
+                borderRadius: "25px",
                 width: "40px",
               }}
             />

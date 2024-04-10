@@ -53,7 +53,7 @@ const handleRequest = frames(async (ctx) => {
   }
 
   return {
-    image: `${BASE_URL}/api/image?networkId=${networkId}`,
+    image: `${BASE_URL}/api/image?networkId=${networkId}&s=1`,
     imageOptions: {
       aspectRatio: "1.91:1",
       width: 955,
