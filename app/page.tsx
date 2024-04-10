@@ -40,6 +40,8 @@ export default function Home({
         {txLink && networkId && (
           <div className="flex flex-col items-center justify-center space-y-2">
             <img
+              className="rounded-lg"
+              width={500}
               src={`${BASE_URL}/api/image?networkId=${networkId}`}
             />
             <div>
