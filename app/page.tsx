@@ -37,7 +37,7 @@ export default function Home({
             Bot for requesting faucet token in any network.
           </div>
         </div>
-        {txLink && (
+        {txLink && networkId && (
           <div className="flex flex-col items-center justify-center space-y-2">
             <img
               src={`${BASE_URL}/api/image?networkId=${networkId}`}

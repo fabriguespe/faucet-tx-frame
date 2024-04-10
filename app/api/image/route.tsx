@@ -107,13 +107,6 @@ export async function GET(req: NextRequest) {
             gap: "16px",
           }}
         >
-          <img
-            src="https://cdn2.iconfinder.com/data/icons/greenline/512/check-1024.png"
-            style={{
-              width: "100px",
-              marginBottom: "24px",
-            }}
-          />
           <div
             style={{
               display: "flex",
