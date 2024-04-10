@@ -53,7 +53,7 @@ export default function Home({
             </div>
           </div>
         )}
-        <div className="flex flex-col mt-8 space-y-4">
+        <div className="flex flex-col mt-8 space-y-4 justify-center items-center">
           <div className="flex flex-row space-x-2">
             <p className="text-center font-medium">
               <a
@@ -75,13 +75,21 @@ export default function Home({
               </a>
             </p>
           </div>
-
-          <p className="text-center text-sm">
-            Made with ❤️ by{" "}
-            <a className="text-green-500" href="https://builders.garden">
-              builders.garden
-            </a>
-          </p>
+          <div className="flex flex-row space-x-4 justify-center items-center">
+            <p className="text-center text-sm">powered by</p>
+            <img
+              className="max-w-full h-auto w-32 md:w-1/12"
+              src="https://learnweb3.io/static/logos/LW3_Light_Full_Logo.png"
+            />
+          </div>
+          <div>
+            <p className="text-center text-sm mt-16">
+              Made with ❤️ by{" "}
+              <a className="text-green-500" href="https://builders.garden">
+                builders.garden
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </main>
