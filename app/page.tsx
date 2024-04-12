@@ -29,7 +29,7 @@ export default function Home({
 }) {
   const { txLink, networkId } = searchParams as any;
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-8 bg-black">
+    <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-black">
       <div className="flex flex-col items-center justify-center space-y-8">
         <div className="flex flex-col items-center justify-center space-y-2">
           <div className="text-3xl text-center font-black">Faucet Bot</div>
