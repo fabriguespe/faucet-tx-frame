@@ -10,7 +10,7 @@ type Props = {
 export async function generateMetadata({ searchParams }: Props) {
   const metadata = await fetchMetadata(
     new URL(
-      `/frame/${searchParams.networkId}?txLink=${searchParams.txLink}`,
+      `/frame?txLink=${searchParams.txLink}&networkLogo=${searchParams.networkLogo}&amount=${searchParams.amount}&networkName=${searchParams.networkName}&tokenName=${searchParams.tokenName}`,
       process.env.BASE_URL || "http://localhost:3001"
     )
   );
@@ -43,7 +43,7 @@ export default function Home({
             <img
               className="rounded-lg"
               width={500}
-              src={`${BASE_URL}/api/image?s=1&networkLogo=${networkLogo}&amount=${amount}&networkName=${networkName}&tokenName=${tokenName}`}
+              src={`${BASE_URL}/api/image?networkLogo=${networkLogo}&amount=${amount}&networkName=${networkName}&tokenName=${tokenName}`}
             />
             <div>
               <button className="bg-white rounded-lg text-black p-2">
