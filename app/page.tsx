@@ -10,7 +10,7 @@ type Props = {
 export async function generateMetadata({ searchParams }: Props) {
   const metadata = await fetchMetadata(
     new URL(
-      `/frame/${searchParams.networkId}?txLink=${searchParams.txLink}`,
+      `/frame?txLink=${searchParams.txLink}&networkLogo=${searchParams.networkLogo}&amount=${searchParams.amount}&networkName=${searchParams.networkName}&tokenName=${searchParams.tokenName}`,
       process.env.BASE_URL || "http://localhost:3001"
     )
   );
@@ -27,7 +27,8 @@ export default function Home({
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const { txLink, networkId } = searchParams as any;
+  const { txLink, networkLogo, networkName, amount, tokenName } =
+    searchParams as any;
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-black">
       <div className="flex flex-col items-center justify-center space-y-8">
@@ -37,12 +38,12 @@ export default function Home({
             Bot for requesting faucet token in any network.
           </div>
         </div>
-        {txLink && networkId && (
+        {txLink && networkName && (
           <div className="flex flex-col items-center justify-center space-y-2">
             <img
               className="rounded-lg"
               width={500}
-              src={`${BASE_URL}/api/image?networkId=${networkId}`}
+              src={`${BASE_URL}/api/image?networkLogo=${networkLogo}&amount=${amount}&networkName=${networkName}&tokenName=${tokenName}`}
             />
             <div>
               <button className="bg-white rounded-lg text-black p-2">

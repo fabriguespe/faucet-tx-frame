@@ -5,9 +5,12 @@ import { createFrames, Button } from "frames.js/next";
 const frames = createFrames();
 
 const handleRequest = frames(async (ctx) => {
-  const networkId = ctx.url.pathname.replaceAll("/frame/", "");
   const txLink = ctx.url.searchParams.get("txLink");
-  if (!txLink || !networkId) {
+  const networkLogo = ctx.url.searchParams.get("networkLogo");
+  const amount = ctx.url.searchParams.get("amount");
+  const networkName = ctx.url.searchParams.get("networkName");
+  const tokenName = ctx.url.searchParams.get("tokenName");
+  if (!txLink) {
     return {
       accepts: [
         {
@@ -53,7 +56,7 @@ const handleRequest = frames(async (ctx) => {
   }
 
   return {
-    image: `${BASE_URL}/api/image?networkId=${networkId}&s=1`,
+    image: `${BASE_URL}/api/image?s=1&networkLogo=${networkLogo}&amount=${amount}&networkName=${networkName}&tokenName=${tokenName}`,
     imageOptions: {
       aspectRatio: "1.91:1",
       width: 955,
