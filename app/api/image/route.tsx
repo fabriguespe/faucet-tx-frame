@@ -25,19 +25,11 @@ const interSemiboldFontPath = join(process.cwd(), "Inter-SemiBold.ttf");
 const interSemiboldFontData = fs.readFileSync(interSemiboldFontPath);
 
 export async function GET(req: NextRequest) {
-  const networkId = req.nextUrl.searchParams.get("networkId");
-  const redisClient = await getRedisClient();
-  const cachedSupportedNetworksData = await redisClient.get(
-    "supported-networks"
-  );
-  if (!cachedSupportedNetworksData) {
-    throw new Error("No supported networks found in cache");
-  }
-  const cachedSupportedNetworks = JSON.parse(cachedSupportedNetworksData);
-  const network = cachedSupportedNetworks.supportedNetworks.find(
-    (n: Network) => n.networkId === networkId
-  );
-  if (!network) {
+  const networkLogo = req.nextUrl.searchParams.get("networkLogo");
+  const amount = req.nextUrl.searchParams.get("amount");
+  const networkName = req.nextUrl.searchParams.get("networkName");
+  const tokenName = req.nextUrl.searchParams.get("tokenName");
+  if (!networkName || !networkLogo || !amount || !tokenName) {
     return new ImageResponse(
       (
         <div
@@ -117,13 +109,13 @@ export async function GET(req: NextRequest) {
             }}
           >
             <img
-              src={network.networkLogo!}
+              src={networkLogo}
               style={{
                 borderRadius: "25px",
                 width: "40px",
               }}
             />
-            <div style={{ fontSize: "20px" }}>{network.networkName}</div>
+            <div style={{ fontSize: "20px" }}>{networkName}</div>
           </div>
           <div style={{ fontSize: "48px", display: "flex" }}>
             You just received{" "}
@@ -135,7 +127,7 @@ export async function GET(req: NextRequest) {
               }}
             >
               {" "}
-              {network.dripAmount} {network.tokenName}
+              {amount} {tokenName}
             </div>
           </div>
         </div>
