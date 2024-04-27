@@ -7,7 +7,7 @@
 Once the app is running, you can construct an URL with the following format:
 
 ```
-url/?networkId={networkId}&txLink={txLink}
+http://localhost:3001/?txLink={txLink}&networkLogo={networkLogo}&amount={amount}&networkName={networkName}&tokenName={tokenName}
 ```
 
 - `txLink`: Direct link to view the transaction.
