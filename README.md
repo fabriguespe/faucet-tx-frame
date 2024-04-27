@@ -1,54 +1,50 @@
-# faucet-tx-frame
+# Tx Receipt Frame 🧾
 
-Frame that displays a receipt of a transaction with a generated image.
+> 💬 **Try it:** Message `faucetbot.eth`
 
-## 📦 installation
+## Usage
 
-once you have cloned the repository, you can install the dependencies by running the following command:
-
-```bash
-npm install # using npm
-yarn install # using yarn
-pnpm install # using pnpm
-bun install # using bun
-```
-
-## 🚀 usage
-
-the first step is to setup the **environment variables** for the project:
-
-```bash
-cp .env.example .env
-```
-
-make sure to populate the `.env` file with the correct values:
-
-```bash
-BASE_URL= # deployed vercel url
-PUBLIC_BOT_ADDRESS= # the address of the bot for deeplink with xmtp apps
-REDIS_CONNECTION_STRING= # redis connection string for caching
-```
-
-once everything is ready, in order to start the development server you must run the following command:
-
-```bash
-npm run dev # using npm
-yarn dev # using yarn
-pnpm dev # using pnpm
-bun dev # using bun
-```
-
-once the app is running, you can construct an URL with the following format:
+Once the app is running, you can construct an URL with the following format:
 
 ```
 url/?networkId={networkId}&txLink={txLink}
 ```
 
-where:
+- `txLink`: Direct link to view the transaction.
+- `networkLogo`: Image URL of the network's logo.
+- `amount`: Transaction amount.
+- `networkName`: Name of the blockchain network.
+- `tokenName`: Name of the token involved.
 
-- `{networkId}` network id
-- `{txLink}` link of the transaction
+## Development
 
-## 📜 license
+To kickstart the tutorial, you'll need to clone the repository containing the bot code. Follow these steps:
 
-this project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```bash
+git clone https://github.com/fabriguespe/tx-receipt-frame.git
+cd tx-receipt-frame
+# copy env variables template
+cp .env.example .env
+```
+
+**Set the variables**
+
+```bash
+REDIS_CONNECTION_STRING= # redis string url
+BASE_URL= # base url for the frame
+```
+
+> ⚠️ Bot kit is not compatible with `bun` yet. Use `npm` or `yarn`
+
+```bash
+# install dependencies
+yarn install
+
+# running the bot
+yarn build
+yarn start
+
+# to run with hot-reload
+yarn build:watch
+yarn start:watch
+```
