@@ -1,6 +1,5 @@
 import { BASE_URL } from "@/lib/constants";
 import { fetchMetadata } from "frames.js/next";
-import { checksumAddress } from "viem";
 
 type Props = {
   params: { id: string };
@@ -8,18 +7,26 @@ type Props = {
 };
 
 export async function generateMetadata({ searchParams }: Props) {
-  const metadata = await fetchMetadata(
-    new URL(
-      `/frame?txLink=${searchParams.txLink}&networkLogo=${searchParams.networkLogo}&amount=${searchParams.amount}&networkName=${searchParams.networkName}&tokenName=${searchParams.tokenName}`,
-      process.env.BASE_URL || "http://localhost:3001"
-    )
-  );
-  return {
-    title: "Faucet Bot",
+  let queryParams = [];
+  if (searchParams.txLink) queryParams.push(`txLink=${searchParams.txLink}`);
+  if (searchParams.networkLogo)
+    queryParams.push(`networkLogo=${searchParams.networkLogo}`);
+  if (searchParams.amount) queryParams.push(`amount=${searchParams.amount}`);
+  if (searchParams.networkName)
+    queryParams.push(`networkName=${searchParams.networkName}`);
+  if (searchParams.tokenName)
+    queryParams.push(`tokenName=${searchParams.tokenName}`);
+  const queryString = queryParams.join("&");
+  const url = `/frame?${queryString}`;
+
+  const metadata = {
+    title: "Receipt Frame",
     other: {
-      ...metadata,
+      ...(await fetchMetadata(new URL(url, BASE_URL))),
     },
   };
+
+  return metadata;
 }
 
 export default function Home({
@@ -30,12 +37,12 @@ export default function Home({
   const { txLink, networkLogo, networkName, amount, tokenName } =
     searchParams as any;
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-8 bg-black">
+    <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-black">
       <div className="flex flex-col items-center justify-center space-y-8">
         <div className="flex flex-col items-center justify-center space-y-2">
-          <div className="text-3xl text-center font-black">Faucet Bot</div>
+          <div className="text-3xl text-center font-black">Tx Receipt Bot</div>
           <div className="text-lg text-center font-semibold">
-            Bot for requesting faucet token in any network.
+            Frame for displaying transaction receipts
           </div>
         </div>
         {txLink && networkName && (
@@ -57,31 +64,15 @@ export default function Home({
         <div className="flex flex-col mt-8 space-y-4 justify-center items-center">
           <div className="flex flex-row space-x-2">
             <p className="text-center font-medium">
+              Go to{" "}
               <a
-                target="_blank"
-                className="text-red-600"
-                href={`https://converse.xyz/dm/${process.env.PUBLIC_BOT_ADDRESS}`}
+                style={{ color: "red" }}
+                href="https://github.com/fabriguespe/botkit"
               >
-                Converse
-              </a>
+                BotKit
+              </a>{" "}
+              to learn more
             </p>
-            <p>•</p>
-            <p className="text-center font-medium">
-              <a
-                target="_blank"
-                className="text-blue-600"
-                href={`https://go.cb-w.com/messaging?address=${process.env.PUBLIC_BOT_ADDRESS}`}
-              >
-                Coinbase Wallet
-              </a>
-            </p>
-          </div>
-          <div className="flex flex-row space-x-4 justify-center items-center">
-            <p className="text-center text-sm">powered by</p>
-            <img
-              className="max-w-full h-auto w-32 md:w-1/12"
-              src="https://learnweb3.io/static/logos/LW3_Light_Full_Logo.png"
-            />
           </div>
           <div>
             <p className="text-center text-sm mt-16">

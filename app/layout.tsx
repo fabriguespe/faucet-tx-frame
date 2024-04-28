@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Faucet Bot",
-  description: "Bot for requesting faucet token in any network.",
+  title: "Tx Receipt",
+  description: "Frame for displaying transaction receipts",
 };
 
 export default function RootLayout({
