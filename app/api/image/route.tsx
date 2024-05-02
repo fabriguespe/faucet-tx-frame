@@ -2,7 +2,6 @@ import { ImageResponse } from "next/og";
 import { NextRequest } from "next/server";
 import fs from "fs";
 import { join } from "path";
-import { getRedisClient } from "@/lib/redis";
 
 export interface Network {
   networkId: string;

@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@open-frames/proxy-client": "^0.2.1",
-    "@redis/client": "^1.5.14",
     "frames.js": "^0.15.0",
     "next": "14.1.4",
     "react": "^18",
